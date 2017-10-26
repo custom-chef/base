@@ -1,8 +1,17 @@
-execute "change localtime to JST" do
+execute "change localtime to JST 1" do
     user "root"
-    command <<-EOC
-        cp -p /usr/share/zoneinfo/Japan /etc/localtime
-        echo 'ZONE="Asia/Tokyo"' > /etc/sysconfig/clock
-        echo 'UTC=false' >> /etc/sysconfig/clock
-    EOC
+    command "cp -p /usr/share/zoneinfo/Japan /etc/localtime"
+    not_if "diff /usr/share/zoneinfo/Japan /etc/localtime"
+end
+
+execute "change localtime to JST 2" do
+    user "root"
+    command "echo 'ZONE=\"Asia/Tokyo\"' > /etc/sysconfig/clock"
+    not_if "grep 'ZONE=\"Asia/Tokyo\"' /etc/sysconfig/clock"
+end
+
+execute "change localtime to JST 3" do
+    user "root"
+    command "echo 'UTC=false' >> /etc/sysconfig/clock"
+    not_if "grep 'UTC=false' /etc/sysconfig/clock"
 end
