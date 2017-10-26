@@ -32,9 +32,17 @@ end
 user "deploy" do
     uid 1000
     comment "for deployment"
-    home "/var/www/sites"
+    home "/home/deploy"
     shell "/bin/bash"
     password nil
+    action :create
+end
+
+directory "/home/deploy/.ssh" do
+    owner "deploy"
+    group "deploy"
+    mode 0700
+    recursive true
     action :create
 end
 
