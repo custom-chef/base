@@ -51,8 +51,3 @@ group "deploy" do
     members ['deploy']
     action :create
 end
-
-group "deploy" do
-    action :modify
-    members ['deploy']
-end
