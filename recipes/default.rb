@@ -5,7 +5,7 @@
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
 # git, vim, mysql-client
-["yum-utils", "git", "vim"].each do |package|
+["yum-utils", "git", "vim", "tcpdump"].each do |package|
   package "#{package}"
 end
 
@@ -35,6 +35,14 @@ user "deploy" do
     home "/home/deploy"
     shell "/bin/bash"
     password nil
+    action :create
+end
+
+directory "/home/deploy" do
+    owner "deploy"
+    group "deploy"
+    mode 0700
+    recursive true
     action :create
 end
 
