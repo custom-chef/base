@@ -67,3 +67,9 @@ group "deploy" do
     members ['deploy']
     action :create
 end
+
+execute "set env" do
+    user "deploy"
+    command "echo 'export APP_ENV=" + node[:app_env] + "' >> ~deploy/.bashrc"
+    not_if "grep APP_ENV ~deploy/.bashrc"
+end
