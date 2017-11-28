@@ -5,7 +5,7 @@
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
 # git, vim, mysql-client
-["yum-utils", "git", "vim", "tcpdump"].each do |package|
+["yum-utils", "git", "vim", "tcpdump", "gcc"].each do |package|
   package "#{package}"
 end
 
